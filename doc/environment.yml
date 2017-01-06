@@ -1,0 +1,24 @@
+name: drizzlepac
+channels:
+  - http://ssb.stsci.edu/astroconda
+dependencies:
+  - astropy
+  - fitsblender
+  - matplotlib
+  - nictools
+  - nose
+  - numpy
+  - pandokia
+  - pyregion
+  - scipy
+  - sphinx
+  - stsci.tools
+  - stsci.convolve
+  - stsci.image
+  - stsci.imagemanip
+  - stsci.imagestats
+  - stsci.ndimage
+  - stsci.stimage
+  - stsci.sphinxext
+  - stsci.skypac
+  - stwcs
