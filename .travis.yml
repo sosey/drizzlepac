@@ -52,13 +52,13 @@ matrix:
 
         - env: PYTHON_VERSION=3.5 ASTROPY_VERSION=development
 
-        allow_failures:
-            # Do a coverage test in Python 2.
-            - env: PYTHON_VERSION=2.7 SETUP_CMD='test --coverage'
+    allow_failures:
+        # Do a coverage test in Python 2.
+        - env: PYTHON_VERSION=2.7 SETUP_CMD='test --coverage'
 
-            # Check for sphinx doc build warnings - we do this first because it
-            # may run for a long time
-            - env: PYTHON_VERSION=2.7 SETUP_CMD='build_sphinx -w'
+        # Check for sphinx doc build warnings - we do this first because it
+        # may run for a long time
+        - env: PYTHON_VERSION=2.7 SETUP_CMD='build_sphinx -w'
 
 before_install:
 
