@@ -31,15 +31,20 @@ env:
         # so Cython is required for testing. If your package does not include
         # Cython code, you can set CONDA_DEPENDENCIES=''
         - CONDA_CHANNELS='http://ssb.stsci.edu/astroconda astropy-ci-extras'
-        - CONDA_DEPENDENCIES='fitsblender nictools nose numpy pandokia pyregion scipy sphinx stwcs stsci.tools stsci.convolve stsci.image stsci.imagemanip stsci.imagestats stsci.ndimage stsci.stimage stsci.skypac'
+        ### using stsci-hst instead of any package with '.' to avoid build error
+        #- CONDA_DEPENDENCIES='fitsblender nictools nose numpy pandokia pyregion scipy sphinx stwcs stsci.tools stsci.convolve stsci.image stsci.imagemanip stsci.imagestats stsci.ndimage stsci.stimage stsci.skypac'
+        - CONDA_DEPENDENCIES='fitsblender nictools nose numpy pandokia pyregion scipy sphinx stwcs stsci-hst'
 
     matrix:
         - PYTHON_VERSION=2.7 SETUP_CMD='install'
         - PYTHON_VERSION=2.7 SETUP_CMD='test'
         - PYTHON_VERSION=2.7 SETUP_CMD='egg_info'
+        - PYTHON_VERSION=2.7 SETUP_CMD='install; nosetests'
+
         - PYTHON_VERSION=3.5 SETUP_CMD='install'
         - PYTHON_VERSION=3.5 SETUP_CMD='test'
         - PYTHON_VERSION=3.5 SETUP_CMD='egg_info'
+        - PYTHON_VERSION=3.5 SETUP_CMD='install; nosetests'
 
 
 matrix:

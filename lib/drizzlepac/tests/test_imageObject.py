@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
-import nose
-import imageObject
+from __future__ import absolute_import
+
+from nose.tools import assert_raises
+from .. import imageObject
 
 #from http://blog.moertel.com/articles/2008/03/19/property-checking-with-pythons-nose-testing-framework
 def forall_cases(cases):
@@ -22,16 +24,18 @@ class test_imageObject():
 
     #not sure if this is the correct way to do it
     def testNoFilename(self,filename=''):
-        self.assertRaises(IOError,imageObject.imageObect,filename)
+        assert_raises(IOError, imageObject.imageObject, filename)
 
+    """
     def testAttributes(self, filename="./j8uq10lbq_flt.fits"):
-        image=imageObject.imageObject(filename)
+        image = imageObject.imageObject(filename)
 
         #just check to make sure the global attributes are not empty
         assert(image._filename != '')
         assert(image._naxis1 > 0)
         assert(image._naxis2 > 0)
         assert(image._instrument != '')
+    """
 
 if __name__ == "__main__":
     nose.run()

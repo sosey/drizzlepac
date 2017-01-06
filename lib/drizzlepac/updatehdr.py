@@ -40,7 +40,7 @@ else:
     ndfloat128 = np.float64
 
 
-def update_from_shiftfile(shiftfile,wcsname=None,force=False):
+def update_from_shiftfile(shiftfile, wcsname=None, force=False):
     """
     Update headers of all images specified in shiftfile with shifts
     from shiftfile.
@@ -92,17 +92,23 @@ def update_from_shiftfile(shiftfile,wcsname=None,force=False):
             sdict[sname] = s[sname]
 
     for img in sdict:
-        updatewcs_with_shift(img['fnames'], refimage, wcsname=wcsname,
-                rot=img['rot'], scale=img['scale'],
-                xsh=img['xsh'], ysh=img['ysh'],
-                xrms=img['xrms'], yrms=img['yrms'],
-                force=force)
+        updatewcs_with_shift(img['fnames'],
+                             refimage,
+                             wcsname=wcsname,
+                             rot=img['rot'],
+                             scale=img['scale'],
+                             xsh=img['xsh'],
+                             ysh=img['ysh'],
+                             xrms=img['xrms'],
+                             yrms=img['yrms'],
+                             force=force)
 
-def updatewcs_with_shift(image,reference,wcsname=None, reusename=False,
+
+def updatewcs_with_shift(image, reference, wcsname=None, reusename=False,
                          fitgeom='rscale',
-                         rot=0.0,scale=1.0,xsh=0.0,ysh=0.0,fit=None,
+                         rot=0.0, scale=1.0, xsh=0.0, ysh=0.0, fit=None,
                          xrms=None, yrms = None,
-                         verbose=False,force=False,sciext='SCI'):
+                         verbose=False, force=False, sciext='SCI'):
 
     """
     Update the SCI headers in 'image' based on the fit provided as determined
@@ -283,7 +289,23 @@ def updatewcs_with_shift(image,reference,wcsname=None, reusename=False,
 
 
 def linearize(wcsim, wcsima, wcsref, imcrpix, f, shift, hx=1.0, hy=1.0):
-    # linearization using 5-point formula for first order derivative
+    """ linearization using 5-point formula for first order derivative
+
+    Parameters
+    ----------
+    wcsim:
+    wcsima:
+    wcsref:
+    imcrpix:
+    f:
+    shift:
+    hx: float,int
+    hy: float,int
+
+    Returns
+    -------
+    somethin: tup
+    """
     x0 = imcrpix[0]
     y0 = imcrpix[1]
     p = np.asarray([[x0, y0],
@@ -296,6 +318,7 @@ def linearize(wcsim, wcsima, wcsref, imcrpix, f, shift, hx=1.0, hy=1.0):
                     [x0, y0 + hy * 0.5],
                     [x0, y0 + hy]],
                    dtype=np.float64)
+
     # convert image coordinates to reference image coordinates:
     p = wcsref.wcs_world2pix(wcsim.wcs_pix2world(p, 1), 1).astype(ndfloat128)
     # apply linear fit transformation:
@@ -332,8 +355,42 @@ def _inv2x2(x):
 
 
 def update_refchip_with_shift(chip_wcs, wcslin, fitgeom='rscale',
-                            rot=0.0, scale=1.0, xsh=0.0, ysh=0.0,
-                            fit=None, xrms=None, yrms=None):
+                              rot=0.0, scale=1.0, xsh=0.0, ysh=0.0,
+                              fit=None, xrms=None, yrms=None):
+    """ Compute the matrix for the scale and rotation correction
+
+    Parameters
+    ----------
+    chip_wcs: TODO
+        Something
+    wcslin: TODO
+        Something
+    fitgeom: str
+        Something
+    rot : float
+        Amount of rotation measured in fit to be applied.
+        [Default=0.0]
+    scale : float
+        Amount of scale change measured in fit to be applied.
+        [Default=1.0]
+    xsh : float
+        Offset in X pixels from defined tangent plane to be applied to image.
+        [Default=0.0]
+    ysh : float
+        Offset in Y pixels from defined tangent plane to be applied to image.
+        [Default=0.0]
+    fit : arr
+        Linear coefficients for fit
+        [Default = None]
+    xrms : float
+        RMS of fit in RA (in decimal degrees) that will be recorded as
+        CRDER1 in WCS and header
+        [Default = None]
+    yrms : float
+        RMS of fit in Dec (in decimal degrees) that will be recorded as
+        CRDER2 in WCS and header
+        [Default = None]
+    """
     # compute the matrix for the scale and rotation correction
     if fit is None:
         fit = linearfit.buildFitMatrix(rot, scale)
@@ -405,7 +462,7 @@ def update_refchip_with_shift(chip_wcs, wcslin, fitgeom='rscale',
 ###
 ### Header keyword prefix related archive functions
 ###
-def update_wcs(image,extnum,new_wcs,wcsname="",reusename=False,verbose=False):
+def update_wcs(image, extnum, new_wcs, wcsname="", reusename=False, verbose=False):
     """
     Updates the WCS of the specified extension number with the new WCS
     after archiving the original WCS.
