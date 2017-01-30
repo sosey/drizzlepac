@@ -33,7 +33,7 @@ env:
         - CONDA_CHANNELS='http://ssb.stsci.edu/astroconda astropy-ci-extras'
         ### using stsci-hst instead of any package with '.' to avoid build error
         #- CONDA_DEPENDENCIES='fitsblender nictools nose numpy pyregion scipy sphinx stwcs stsci.tools stsci.convolve stsci.image stsci.imagemanip stsci.imagestats stsci.ndimage stsci.stimage stsci.skypac'
-        - CONDA_DEPENDENCIES='fitsblender nictools nose numpy pyregion scipy sphinx stwcs stsci-hst'
+        - CONDA_DEPENDENCIES='fitsblender nictools nose numpy pyregion scipy sphinx stwcs stsci-hst d2to1'
 
     matrix:
         - PYTHON_VERSION=2.7 SETUP_CMD='install'
