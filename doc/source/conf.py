@@ -13,10 +13,9 @@
 
 import sys, os
 
-from stsci.sphinxext.conf import *
-
 # Check Sphinx version
 import sphinx
+import stsci_sphinx_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -27,11 +26,13 @@ import sphinx
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions += ['sphinx.ext.autodoc', 'sphinx.ext.pngmath','numpydoc',
-                'sphinx.ext.intersphinx', 'sphinx.ext.coverage',
-                'sphinx.ext.autosummary',
-                'sphinx.ext.doctest']
-extensions += ['parameter_anchor']
+extensions = ['sphinx.ext.autodoc', 
+              'sphinx.ext.imgmath',
+              'numpydoc',
+              'sphinx.ext.intersphinx', 
+              'sphinx.ext.coverage',
+              'sphinx.ext.autosummary',
+              'sphinx.ext.doctest']
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -104,7 +105,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.
-#html_theme = 'sphinxdoc'
+html_theme = 'stsci_sphinx_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -112,8 +113,7 @@ pygments_style = 'sphinx'
 #html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
-#html_theme_path = []
-html_static_path = ['_static']
+html_theme_path = [stsci_sphinx_theme.get_html_theme_path()]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".

@@ -8,6 +8,7 @@ dependencies:
   - nictools
   - nose
   - numpy
+  - numpydoc
   - pyregion
   - scipy
   - sphinx
@@ -21,3 +22,5 @@ dependencies:
   - stsci.sphinxext
   - stsci.skypac
   - stwcs
+  - pip:
+    - git+https://github.com/spacetelescope/stsci_sphinx_theme.git#egg=stsci_sphinx_theme
