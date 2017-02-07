@@ -12,15 +12,7 @@ dependencies:
   - pyregion
   - scipy
   - sphinx
-  - stsci.tools
-  - stsci.convolve
-  - stsci.image
-  - stsci.imagemanip
-  - stsci.imagestats
-  - stsci.ndimage
-  - stsci.stimage
-  - stsci.sphinxext
-  - stsci.skypac
+  - stsci
   - stwcs
   - pip:
     - git+https://github.com/spacetelescope/stsci_sphinx_theme.git#egg=stsci_sphinx_theme

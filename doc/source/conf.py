@@ -12,10 +12,10 @@
 # serve to show the default.
 
 import sys, os
+import stsci_sphinx_theme
 
 # Check Sphinx version
 import sphinx
-import stsci_sphinx_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
