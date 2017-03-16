@@ -22,17 +22,20 @@ import sphinx
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0,os.path.abspath('.'))
 
+numpydoc_show_class_members = False
+
 # -- General configuration -----------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 
+extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.imgmath',
               'numpydoc',
-              'sphinx.ext.intersphinx', 
+              'sphinx.ext.intersphinx',
               'sphinx.ext.coverage',
               'sphinx.ext.autosummary',
-              'sphinx.ext.doctest']
+              'sphinx.ext.doctest',
+              'sphinx.ext.inheritance_diagram']
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -179,9 +182,6 @@ htmlhelp_basename = 'drizzlepacdoc'
 
 # The paper size ('letter' or 'a4').
 latex_paper_size = 'letter'
-
-# The font size ('10pt', '11pt' or '12pt').
-latex_font_size = '11pt'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
