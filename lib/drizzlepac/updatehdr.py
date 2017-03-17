@@ -291,20 +291,6 @@ def updatewcs_with_shift(image, reference, wcsname=None, reusename=False,
 def linearize(wcsim, wcsima, wcsref, imcrpix, f, shift, hx=1.0, hy=1.0):
     """ linearization using 5-point formula for first order derivative
 
-    Parameters
-    ----------
-    wcsim:
-    wcsima:
-    wcsref:
-    imcrpix:
-    f:
-    shift:
-    hx: float,int
-    hy: float,int
-
-    Returns
-    -------
-    somethin: tup
     """
     x0 = imcrpix[0]
     y0 = imcrpix[1]
@@ -361,12 +347,12 @@ def update_refchip_with_shift(chip_wcs, wcslin, fitgeom='rscale',
 
     Parameters
     ----------
-    chip_wcs: TODO
-        Something
-    wcslin: TODO
-        Something
+    chip_wcs: wcs object
+        HST of the input image
+    wcslin: wcs object
+        Reference WCS from which the offsets/rotations are determined
     fitgeom: str
-        Something
+        NOT USED
     rot : float
         Amount of rotation measured in fit to be applied.
         [Default=0.0]
